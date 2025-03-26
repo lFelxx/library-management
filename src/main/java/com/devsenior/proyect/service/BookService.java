@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import com.devsenior.proyect.exception.UnreturnedBookException;
 import com.devsenior.proyect.model.Book;
 
 public class BookService {
@@ -22,7 +21,7 @@ public class BookService {
         return books;
     }
 
-    public Book getBookByIsbn(String isbn) throws UnreturnedBookException{
+    public Book getBookByIsbn(String isbn) throws NoSuchElementException{
         for (var book : books) {
             if (book.getIsbn().equals(isbn)) {
                 return book;
@@ -31,7 +30,7 @@ public class BookService {
         throw new NoSuchElementException("El libro con isbn: " + isbn + " no fue encontrado");
     }
 
-    public void deleteBook(String isbn){
+    public void deleteBook(String isbn) throws NoSuchElementException{
         for (var book : books) {
             if (book.getIsbn().equals(isbn)) {
                 books.remove(book);
